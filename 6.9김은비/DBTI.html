@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함께하DOG록 - 댕BTI 테스트</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        /* 눈누 G마켓 산스 웹폰트 정의 (이전 페이지들과 완벽 일치) */
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GmarketSansBold';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        :root {
+            --sky-blue: #007BFF; /* 메인 및 예약 페이지와 색상 통일 */
+            --mustard: #FFDB58;  /* 메인 및 예약 페이지와 색상 통일 */
+            --white: #ffffff;
+            --light-bg: #f9f9f9;
+            --gray: #888;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            font-family: 'GmarketSansMedium', sans-serif; /* 기본 서체 적용 */
+            background-color: var(--light-bg);
+            color: #333;
+            letter-spacing: -0.01em;
+        }
+
+        /* 폰트 굵기 지정 최적화 (굵은 글씨 영역을 확실하게 분리) */
+        h1, h2, h3, h4, nav, button, a, p, span, label {
+            font-family: 'GmarketSansMedium', sans-serif;
+        }
+        
+        .font-bold, strong, b, h1, .logo, .btn-primary, .btn-save, .result-name {
+            font-family: 'GmarketSansBold', sans-serif !important;
+        }
+
+        /* 내비게이션 스타일 유지 */
+        .navbar {
+            position: fixed;
+            top: 0; width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-sizing: border-box;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 2px solid var(--mustard);
+        }
+
+        .logo { 
+            font-size: 24px; color: var(--sky-blue); 
+            font-weight: bold; text-decoration: none;
+            display: flex; align-items: center;
+        }
+        .logo span { color: var(--mustard); }
+
+        /* 컨테이너 */
+        .main-container {
+            max-width: 800px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 40px;
+            padding: 50px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        /* 공통 버튼 스타일 */
+        .btn {
+            border: none;
+            border-radius: 30px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--sky-blue);
+            color: white;
+            padding: 15px 50px;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-primary:hover { background: #0056b3; transform: translateY(-2px); }
+
+        .btn-option {
+            background: #f0f4ff;
+            color: #333;
+            width: 100%;
+            padding: 20px;
+            margin: 10px 0;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .btn-option:hover { background: var(--sky-blue); color: white; }
+
+        /* 진행 바 */
+        .progress-container {
+            width: 100%; height: 12px;
+            background: #eee;
+            border-radius: 10px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--mustard);
+            width: 0%;
+            transition: 0.4s;
+        }
+
+        /* 퀴즈 텍스트 */
+        .question-title { font-size: 28px; font-weight: bold; margin-bottom: 40px; line-height: 1.5; }
+        .question-title span { color: var(--sky-blue); }
+
+        /* 결과 창 */
+        .result-title { font-size: 20px; color: var(--gray); margin-bottom: 10px; }
+        .result-name { font-size: 36px; color: var(--sky-blue); font-weight: bold; margin-bottom: 30px; }
+        .result-desc { font-size: 18px; line-height: 1.8; color: #555; background: #fef9e7; padding: 25px; border-radius: 20px; text-align: left; margin-bottom: 30px;}
+
+        .hidden { display: none; }
+
+        /* 결과 이미지 캡처 영역 스타일 */
+        #result-capture {
+            background: white;
+            padding: 40px;
+            border-radius: 40px;
+        }
+
+        /* 저장 버튼 스타일 */
+        .btn-save {
+            background: var(--mustard);
+            color: #111;
+            padding: 15px 50px;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 219, 88, 0.4);
+            margin-right: 10px;
+        }
+        .btn-save:hover { background: #e1b000; transform: translateY(-2px); }
+
+        @media (max-width: 600px) {
+            .question-title { font-size: 22px; }
+            .card { padding: 40px 20px; }
+            .result-name { font-size: 28px; }
+            .btn-save, .btn-primary { width: 100%; margin-right: 0; margin-bottom: 10px;}
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">함께하DOG록</a>
+        <div class="menu"><a href="index.html" class="logo" style="font-size: 16px;">돌아가기&nbsp;</a></div>
+    </nav>
+
+    <main class="main-container">
+        <div id="start-screen" class="card">
+            <div style="font-size: 60px; margin-bottom: 20px;">🐕‍🦺</div>
+            <h1 class="question-title">우리 아이 <span>댕BTI</span>는?<br>성격 유형 테스트</h1>
+            <p style="color: var(--gray); margin-bottom: 40px; line-height: 1.6;">8개의 질문으로 알아보는<br>
+                우리 강아지의 속마음!<br>
+                우리 강아지의 DBTI를 맞춘 분들께 소정의 상품을 드려요</p>
+            <button class="btn btn-primary" onclick="startQuiz()">테스트 시작하기</button>
+        </div>
+
+        <div id="quiz-screen" class="card hidden">
+            <div class="progress-container"><div id="progress" class="progress-bar"></div></div>
+            <div id="question-number" style="color: var(--sky-blue); margin-bottom: 10px; font-weight: bold;">Q1.</div>
+            <h2 id="question-text" class="question-title">질문이 들어갈 자리입니다.</h2>
+            <div id="answer-buttons">
+                <button class="btn btn-option" onclick="next(1)">그렇다 멍!</button>
+                <button class="btn btn-option" onclick="next(0)">아니다 멍!</button>
+            </div>
+        </div>
+
+        <div id="result-screen" class="card hidden">
+            <div id="result-capture">
+                <p class="result-title">우리 아이 성격은?</p>
+                <h2 id="dog-type" class="result-name">에너자이저 인싸댕</h2>
+                <div id="type-description" class="result-desc"></div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-save" onclick="saveResult()">결과 이미지 저장하기</button>
+                <button class="btn btn-primary" onclick="location.reload()">다시 테스트하기</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const questions = [
+            { q: "처음 보는 친구에게 먼저 꼬리를 흔들며 다가가나요?", type: "E" },
+            { q: "산책 나갔을 때 다른 강아지보다 사람에게 더 관심을 보이나요?", type: "E" },
+            { q: "집안에서도 잠시도 가만히 있지 않고 움직이나요?", type: "A" },
+            { q: "산책 중 새로운 길을 만났을 때 주저 없이 가려 하나요?", type: "A" },
+            { q: "보호자님이 화장실만 가도 문 앞에서 기다리나요?", type: "D" },
+            { q: "천둥소리나 큰 소리가 나면 보호자 품으로 숨나요?", type: "D" },
+            { q: "간식보다는 보호자님의 칭찬 and 쓰다듬기를 더 좋아하나요?", type: "W" },
+            { q: "개인기를 배울 때 눈을 반짝이며 집중하나요?", type: "W" }
+        ];
+
+        const dogTypes = {
+            "EADW": { title: "호기심 많은 러블리 리더", desc: "사교성도 좋고 모험심도 강하며, 보호자님과의 교감을 가장 중요하게 생각하는 만능 댕댕이예요! 어디서든 사랑받는 타입입니다." },
+            "EAD-": { title: "에너자이저 무한 체력왕", desc: "노는 게 제일 좋아! 지치지 않는 체력과 호기심으로 세상 모든 게 궁금한 아이예요. 보호자님과의 놀이 시간을 가장 기다립니다." },
+            "EA-W": { title: "똑똑한 자유영혼 탐험가", desc: "눈치가 빠르고 학습 능력이 뛰어나며 새로운 것을 배우는 걸 즐겨요. 독립심도 있어 가끔은 혼자만의 탐험을 즐기기도 합니다." },
+            "EA--": { title: "마이웨이 쿨 가이", desc: "사교성은 좋지만 자기주장이 뚜렷하고 독립적이에요. 쿨한 성격으로 친구들과 잘 지내면서도 자신의 영역을 중요하게 생각합니다." },
+            "E-DW": { title: "다정다감한 껌딱지", desc: "보호자님 곁이 세상에서 가장 안전하고 행복해! 겁이 좀 많을 수 있지만 보호자님을 향한 사랑은 그 누구보다 깊은 사랑둥이예요." },
+            "E-D-": { title: "겁 많은 소심한 애교쟁이", desc: "낯선 환경이나 사람은 조금 무섭지만, 보호자님 앞에서는 무장해제! 애교 만점인 아이예요. 천천히 세상과 친해질 시간이 필요해요." },
+            "E--W": { title: "눈치 백단 사회생활 만렙", desc: "사람과 강아지 친구들의 기분을 잘 살피고 맞춰주는 똑똑한 아이예요. 균형 잡힌 성격으로 평화를 사랑하는 젠틀 댕댕이입니다." },
+            "E---": { title: "조용히 인기 많은 인기쟁이", desc: "크게 표현하지 않아도 주변에 친구들이 모여드는 타입이에요. 신중하면서도 사교적인 성격으로 은은한 매력을 발산합니다." },
+            "-ADW": { title: "호기심 많은 겁쟁이", desc: "새로운 것은 궁금하지만 막상 다가가긴 무서워! 보호자님 의존도가 높으면서도 모험심이 있어 보호자님 뒤에 숨어 세상을 관찰합니다." },
+            "-AD-": { title: "우당탕탕 사고뭉치", desc: "일단 저지르고 보자! 겁은 많은데 호기심이 더 앞서 가끔 사고를 치기도 해요. 보호자님의 인내심과 올바른 리드가 필요합니다." },
+            "-A-W": { title: "똑똑한 야심가", desc: "새로운 길, 새로운 개인기 등 배우고 도전하는 것을 즐기는 모범생 타입이에요. 독립적이면서도 성취감이 강해 훈련 성과가 좋습니다." },
+            "-A--": { title: "고집불통 사냥꾼", desc: "자기주장이 강하고 독립적이며 본능에 충실한 타입이에요. 모험심이 강해 산책 시 에너지를 충분히 분출시켜 주는 것이 중요합니다." },
+            "--DW": { title: "보호자만 아는 해바라기", desc: "세상에 보호자님과 나, 둘만 있으면 돼! 아주 섬세하고 내성적인 성격으로 보호자님과의 교감에서만 큰 행복을 느낍니다." },
+            "--D-": { title: "섬세한 유리멘탈", desc: "작은 소리나 변화에도 쉽게 긴장하는 예민한 아이예요. 보호자님의 따뜻한 보호와 안정적인 환경이 무엇보다 중요합니다." },
+            "---W": { title: "현자 타임 댕댕이", desc: "독립적이면서도 눈치가 빨라 상황 판단이 좋아요. 크게 동요하지 않고 보호자님과의 안정적인 교감을 즐기는 성숙한 아이입니다." },
+            "----": { title: "고독한 애생가", desc: "혼자만의 시간과 공간을 중요하게 생각하는 독고다이 타입이에요. 보호자님을 사랑하지만 표현이 서툴 수 있으니 있는 그대로를 존중해주세요." }
+        };
+
+        let currentIdx = 0;
+        let scores = { E: 0, A: 0, D: 0, W: 0 };
+
+        function startQuiz() {
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = questions[currentIdx];
+            document.getElementById('question-number').innerText = `Q${currentIdx + 1}.`;
+            document.getElementById('question-text').innerText = q.q;
+            document.getElementById('progress').style.width = ((currentIdx / questions.length) * 100) + "%";
+        }
+
+        function next(point) {
+            const type = questions[currentIdx].type;
+            scores[type] += point;
+            currentIdx++;
+
+            if (currentIdx < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            let typeCode = "";
+            typeCode += scores.E >= 1 ? "E" : "-";
+            typeCode += scores.A >= 1 ? "A" : "-";
+            typeCode += scores.D >= 1 ? "D" : "-";
+            typeCode += scores.W >= 1 ? "W" : "-";
+
+            const result = dogTypes[typeCode] || dogTypes["----"];
+
+            document.getElementById('dog-type').innerText = result.title;
+            document.getElementById('type-description').innerText = result.desc;
+        }
+
+        function saveResult() {
+            const captureArea = document.getElementById('result-capture');
+            
+            // 이미지 캡처 본 복제 시에도 Bold 서체가 유실되지 않도록 정밀 제어 적용
+            html2canvas(captureArea, {
+                scale: 2,
+                backgroundColor: "#ffffff",
+                useCORS: true,
+                onclone: (clonedDoc) => {
+                    clonedDoc.getElementById('result-capture').style.fontFamily = "'GmarketSansMedium', sans-serif";
+                    clonedDoc.getElementById('dog-type').style.fontFamily = "'GmarketSansBold', sans-serif";
+                }
+            }).then(canvas => {
+                const image = canvas.toDataURL("image/png");
+                const link = document.createElement('a');
+                link.href = image;
+                link.download = `댕BTI_결과_${document.getElementById('dog-type').innerText}.png`;
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함께하DOG록 - 사전 예약</title>
+    <style>
+        /* 눈누 G마켓 산스 웹폰트 정의 (이전 페이지들과 완벽 일치) */
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GmarketSansBold';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        :root {
+            --sky-blue: #007BFF;
+            --mustard: #FFDB58;
+            --dark-gray: #333;
+            --light-gray: #f2f2f2;
+        }
+
+        body {
+            font-family: 'GmarketSansMedium', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0; padding: 0;
+            color: var(--dark-gray);
+            letter-spacing: -0.01em;
+        }
+
+        /* 폰트 굵기 지정 최적화 */
+        h1, h2, h3, h4, nav, button, a, p, span, label, input, select, option {
+            font-family: 'GmarketSansMedium', sans-serif;
+        }
+        
+        .font-bold, strong, h1, label, .logo, .btn-submit, .size-option {
+            font-family: 'GmarketSansBold', sans-serif;
+        }
+
+        /* 내비게이션 */
+        .navbar {
+            padding: 15px 8%;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 2px solid var(--mustard);
+        }
+        .logo { font-size: 24px; color: var(--sky-blue); text-decoration: none; font-weight: bold; }
+        .logo span { color: var(--mustard); }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        h1 { text-align: center; color: var(--sky-blue); margin-bottom: 30px; font-weight: bold; }
+        
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-size: 16px; font-weight: bold; }
+
+        input[type="text"], input[type="tel"], input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 15px;
+        }
+
+        /* 견종 크기 선택 스타일 */
+        .dog-size-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+        .size-option {
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        .size-option input { display: none; }
+        .size-option:hover { background: #f0f7ff; }
+        .size-option.active {
+            border-color: var(--sky-blue);
+            background: #f0f7ff;
+            color: var(--sky-blue);
+        }
+
+        /* 전문가 도우미 영역 스타일 */
+        .helper-group {
+            background-color: #f0f7ff; /* 연한 파란색 배경 */
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #cce5ff;
+        }
+        .helper-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 0; /* 커스텀 라벨 내부 margin 제거 */
+        }
+        .helper-desc {
+            font-size: 13px;
+            color: #555;
+            margin-top: 8px;
+            margin-left: 28px; /* 체크박스 크기만큼 들여쓰기 */
+            line-height: 1.4;
+        }
+
+        .agreement {
+            background: var(--light-gray);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-top: 30px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: var(--mustard);
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(255, 219, 88, 0.4);
+        }
+        .btn-submit:hover { background: #E1B000; transform: translateY(-2px); }
+
+        .notice { font-size: 12px; color: #888; text-align: center; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="INDEX.html" class="logo">함께하DOG록</a>
+    </nav>
+
+    <div class="container">
+        <h1>축제 사전 예약</h1>
+        
+        <form id="reserveForm">
+            <div class="form-group">
+                <label>예약자 성함</label>
+                <input type="text" placeholder="성함을 입력해주세요" required>
+            </div>
+
+            <div class="form-group">
+                <label>전화번호</label>
+                <input type="tel" placeholder="010-0000-0000" required>
+            </div>
+
+            <div class="form-group">
+                <label>총 참가 인원 (동반인 포함)</label>
+                <input type="number" min="1" value="1" required>
+            </div>
+
+            <hr style="border: 0.5px solid #eee; margin: 30px 0;">
+
+            <div class="form-group">
+                <label>반려견 이름</label>
+                <input type="text" placeholder="강아지 이름을 입력해주세요" required>
+            </div>
+
+            <div class="form-group">
+                <label>반려견 크기 (필수 선택)</label>
+                <div class="dog-size-group">
+                    <label class="size-option" onclick="selectSize(this)">
+                        <input type="radio" name="dogSize" value="small" required> 소형견
+                    </label>
+                    <label class="size-option" onclick="selectSize(this)">
+                        <input type="radio" name="dogSize" value="medium"> 중형견
+                    </label>
+                    <label class="size-option" onclick="selectSize(this)">
+                        <input type="radio" name="dogSize" value="large"> 대형견
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group helper-group">
+                <label class="helper-label">
+                    <input type="checkbox" name="needHelper" value="yes" style="margin-right: 10px; width: 18px; height: 18px;">
+                    행동교정 전문가 도우미가 필요하십니까?
+                </label>
+                <p class="helper-desc">
+                    축제 참여가 불안하거나 타 반려견과의 마찰이 걱정되는 경우, <br>
+                    전문가가 매칭되어 함께 이동하며 안전한 관람을 돕습니다. (선착순 마감 예정)
+                </p>
+            </div>
+
+            <div class="form-group">
+                <label>방문 예정 시간</label>
+                <select>
+                    <option value="10:00">오전 10:00</option>
+                    <option value="13:00">오후 01:00</option>
+                    <option value="15:00">오후 03:00</option>
+                    <option value="17:00">오후 05:00</option>
+                </select>
+            </div>
+
+            <div class="agreement">
+                <label style="display: flex; align-items: center; cursor: pointer;">
+                    <input type="checkbox" required style="margin-right: 10px;">
+                    (필수) 개인정보 수집 및 축제 안전수칙 동의
+                </label>
+                <p style="margin-top: 10px; color: #666; line-height: 1.4; font-size: 13px;">
+                    * 행사 내 반려견 사고 발생 시 책임은 보호자에게 있습니다.<br>
+                    * 공격성이 있는 견종은 입마개가 필수입니다.
+                </p>
+            </div>
+
+            <button type="submit" class="btn-submit">예약 완료하기</button>
+            <p class="notice">예약 완료 시 자동으로 메인 페이지로 이동합니다.</p>
+        </form>
+    </div>
+
+    <script>
+        // 견종 크기 선택 시 시각 효과 함수
+        /* 이 함수는 기존 코드를 유지하되 글꼴 가독성을 최적화하여 폰트 적용이 흐트러지지 않도록 돕습니다. */
+        function selectSize(element) {
+            const options = document.querySelectorAll('.size-option');
+            options.forEach(opt => opt.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // 예약 제출 후 메인으로 이동하는 스크립트
+        document.getElementById('reserveForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // 실제 서버 전송 방지 (시뮬레이션)
+            
+            // 1. 성공 알림창 띄우기
+            alert('🎉 사전 예약이 성공적으로 완료되었습니다!\n메인 페이지로 돌아갑니다.');
+            
+            // 2. INDEX.html 페이지로 이동
+            window.location.href = 'index.html'; 
+        });
+    </script>
+</body>
+</html>

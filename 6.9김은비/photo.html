@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함께하DOG록 - 추억 한 컷</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        shinyBlue: '#007BFF',
+                        mustard: '#FFDB58',
+                        deepMustard: '#E1B000',
+                        warmBeige: '#FDFBF7'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+    /* 눈누 G마켓 산스 웹폰트 정의 */
+    @font-face {
+        font-family: 'GmarketSans';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'GmarketSans';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+    }
+
+    body { 
+        font-family: 'GmarketSans', sans-serif; 
+        letter-spacing: -0.01em;
+        background-color: #FDFBF7;
+    }
+
+    h1, h2, h3, h4, nav, button, a, p, span {
+        font-family: 'GmarketSans', sans-serif !important;
+    }
+
+    .dashed-border {
+        border: 3px dashed #FFDB58;
+    }
+    
+    .floating-item {
+        animation: floating 3s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+</style>
+</head>
+<body class="text-gray-800">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b-2 border-mustard">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="text-3xl font-bold text-shinyBlue flex items-center gap-2">
+                   함께하DOG록
+                </a>
+                <div class="flex space-x-6 text-lg items-center">
+                    <a href="index.html" class="text-gray-600 hover:text-shinyBlue transition font-bold">돌아가기</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-16 px-4 text-center bg-white border-b border-gray-100">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-block px-6 py-2 bg-mustard rounded-full text-gray-900 font-bold mb-6 floating-item shadow-sm">
+              추억 한 컷
+          </div>
+            <h1 class="text-5xl font-bold mb-6 text-gray-900 leading-tight">오늘의 행복을<br><span class="text-shinyBlue">잊지않도록 간직해요!</span></h1>
+            <p class="text-xl text-gray-600">남는 것은 사진 뿐! 오늘의 하루를 기록해보세요&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+        </div>
+    </header>
+
+    <section class="py-20 max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="bg-white rounded-[40px] p-8 shadow-lg border-2 border-transparent hover:border-shinyBlue transition-all flex flex-col">
+                <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-3xl mb-6">📸</div>
+                <h3 class="text-2xl font-bold mb-4 text-shinyBlue">견생네컷 &amp; 댕명사진</h3>
+                <p class="text-gray-600 mb-8 leading-relaxed">
+                    강아지와 함께 찍는 네 컷 사진! <br>
+                    보호자용 아이템과 강아지용 커플 소품이 
+					<br> 완벽하게 준비되어 있어요.
+					<br> AI로 증명사진을 만들어볼 수 있어요!
+                </p>
+                <div class="mt-auto bg-gray-50 p-6 rounded-3xl dashed-border">
+                    <ul class="space-y-2 text-sm font-bold text-gray-600">
+                        <li><i class="fas fa-check text-shinyBlue mr-2"></i> 즉석 인화 기계</li>
+                        <li><i class="fas fa-check text-shinyBlue mr-2"></i> 꾸미기 테이블 이용 무료</li>
+                        <li><i class="fas fa-check text-shinyBlue mr-2"></i> 소품 대여</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-[40px] p-8 shadow-lg border-2 border-transparent hover:border-mustard transition-all flex flex-col">
+                <div class="w-16 h-16 bg-yellow-50 rounded-2xl flex items-center justify-center text-3xl mb-6">🎨</div>
+                <h3 class="text-2xl font-bold mb-4 text-deepMustard">언제나 함께 메모리얼 키링&nbsp; &nbsp;</h3>
+                <p class="text-gray-600 mb-8 leading-relaxed">
+					우리 강아지만의 특별한 체험 
+					<br>
+				    우리 강아지 비문으로 키링을 만들 수 있어요! &nbsp;</p>
+               
+<div class="mt-auto bg-gray-50 p-6 rounded-3xl dashed-border">
+          <ul class="space-y-2 text-sm font-bold text-gray-600">
+                        <li><i class="fas fa-check text-mustard mr-2"></i> &nbsp;전문가와 함께하는 체험&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</li>
+                        <li><i class="fas fa-check text-mustard mr-2"></i> 소요시간 약 10분 내외</li>
+                        <li><i class="fas fa-check text-mustard mr-2"></i> 제작 후 집으로 배송해드려요&nbsp; &nbsp;</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-[40px] p-8 shadow-lg border-2 border-transparent hover:border-shinyBlue transition-all flex flex-col">
+                <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-3xl mb-6">🐶</div>
+                <h3 class="text-2xl font-bold mb-4 text-shinyBlue">우리 강아지 문진&nbsp; &nbsp;&nbsp;</h3>
+                <p class="text-gray-600 mb-8 leading-relaxed"> 함께 했던 순간을 더 소중하게 간직해요!
+					<br> 소중했던 사진을 문진에 프린트해서 특별하게 <br>간직할 수 있어요</p>
+                
+<div class="mt-auto bg-blue-50 p-6 rounded-3xl border-2 border-dashed border-shinyBlue/30">
+      
+                    <ul class="space-y-2 text-sm font-bold text-gray-600">
+                        <li><i class="fas fa-check text-shinyBlue mr-2"></i> 넣고 싶은 사진을 카톡 친구추가 후 전송</li>
+                        <li><i class="fas fa-check text-shinyBlue mr-2"></i> 소요시간 10분 내외 </li>
+                        <li><i class="fas fa-check text-shinyBlue mr-2"></i> 특별하고 소중한 추억 소장</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-20 bg-shinyBlue text-white">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2">
+                <div class="inline-block px-4 py-1 bg-white/20 rounded-lg text-sm font-bold mb-4 tracking-widest uppercase">Flea Market</div>
+                <h2 class="text-4xl font-bold mb-6">댕댕이 소품 프리마켓</h2>
+                <p class="text-xl opacity-90 leading-relaxed mb-8">
+                    촬영할 때 썼던 귀여운 아이템이 마음에 드셨나요? <br>
+                    중앙 광장에서 핸드메이드 옷, 수제간식, 악세사리 등 하나뿐인 소품을 직접 만나보세요.
+              </p>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="text-center bg-white/10 p-4 rounded-2xl">
+                        <div class="text-2xl mb-1">🎀</div>
+                        <div class="font-bold text-sm">옷</div>
+                    </div>
+                    <div class="text-center bg-white/10 p-4 rounded-2xl">
+                        <div class="text-2xl mb-1">👒</div>
+                        <div class="font-bold text-sm">수제간식</div>
+                    </div>
+                    <div class="text-center bg-white/10 p-4 rounded-2xl">
+                        <div class="text-2xl mb-1">🧶</div>
+                        <div class="font-bold text-sm">악세사리</div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 bg-white p-4 rounded-[40px] rotate-2 shadow-2xl">
+                <img src="강아지.jpg" alt="Market" class="rounded-[30px] w-full h-[350px] object-cover">
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-20 max-w-4xl mx-auto px-4">
+        <div class="bg-white rounded-[40px] p-10 border-4 border-mustard shadow-sm">
+            <h4 class="text-2xl font-bold mb-8 flex items-center gap-2 text-gray-900">
+                <i class="fas fa-info-circle text-mustard"></i> 이용 안내 및 금액
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg">
+                <div class="p-6 bg-gray-50 rounded-2xl">
+                  <p class="text-shinyBlue font-bold mb-2">운영 정보</p>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        • <b>위치:</b> &nbsp;태화강 버들마당<br>
+                        • <b>시간:</b> 10:00 - 18:00
+                    </p>
+                </div>
+              <div class="p-6 bg-gray-50 rounded-2xl">
+                <p class="text-deepMustard font-bold mb-2">요금 안내</p>
+                  <p class="text-sm text-gray-600 leading-relaxed">
+                      • <b>견생네컷 &amp; 우리 강아지 문진 :&nbsp;</b> 무료 체험<br>
+                      • <b>메모리얼 키링:</b> 5,000원
+                  </p>
+                </div>
+            </div>
+            <p class="mt-8 text-center text-gray-400 text-sm italic">※ 대여용 소품은 깨끗이 사용 후 꼭 반납해 주세요!</p>
+        </div>
+        
+        <div class="text-center mt-16">
+            <a href="INDEX.html" class="bg-gray-900 text-white px-10 py-5 rounded-2xl font-bold text-xl hover:bg-black shadow-xl transition-all inline-block transform hover:-translate-y-1">
+                축제 메인으로 돌아가기
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-500 font-bold">© 2026 Ulsan Dog Festival. 함께하DOG록</p>
+        </div>
+    </footer>
+
+</body>
+</html>

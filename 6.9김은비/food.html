@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함께하DOG록 - 먹거리 존 상세안내</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        shinyBlue: '#007BFF',
+                        mustard: '#FFDB58',
+                        deepMustard: '#E1B000'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 눈누 G마켓 산스 웹폰트 정의 */
+        @font-face {
+            font-family: 'GmarketSans';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GmarketSans';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        body { 
+            font-family: 'GmarketSans', sans-serif; 
+        }
+        
+        /* 모든 텍스트 요소에 G마켓 산스 서체 강제 적용 */
+        h1, h2, h3, h4, nav, button, a, p, span, li, div {
+            font-family: 'GmarketSans', sans-serif !important;
+        }
+    </style>
+</head>
+<body class="bg-orange-50">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b-2 border-mustard">
+        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center h-20">
+            <a href="index.html" class="text-2xl font-bold text-shinyBlue"> 함께하DOG록</a>
+            
+        </div>
+    </nav>
+
+    <header class="py-20 text-center">
+        <h1 class="text-5xl font-bold mb-6 text-gray-900">먹고 놀자!</h1>
+        <p class="text-xl text-gray-600">반려견과 보호자가 모두 안전하고 맛있게 즐길 수 있는 메뉴를 소개합니다.</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 pb-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            
+            <div class="space-y-8">
+                <div class="bg-white p-10 rounded-[50px] shadow-xl border-t-8 border-mustard h-full">
+                    <div class="w-20 h-20 bg-yellow-100 text-mustard rounded-3xl flex items-center justify-center text-4xl mb-6">
+                        <i class="fas fa-dog"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">댕댕 미식회</h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                    반려견들을 위한 특별한 요리! 
+						<br>
+					  특별한 날인만큼 특별한 음식으로 든든하게 채우고 놀자!&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 bg-orange-50 p-4 rounded-2xl">
+                            <span class="text-2xl">🥩</span>
+                            <div>
+                                <h4 class="font-bold text-lg">황태 스테이크</h4>
+                                <p class="text-gray-500 text-sm">염분을 제거한 황태와 신선한 채소의 조화</p>
+                            </div>
+                      </li>
+                        <li class="flex items-center gap-4 bg-orange-50 p-4 rounded-2xl">
+                            <span class="text-2xl">🍕</span>
+                            <div>
+                                <h4 class="font-bold text-lg">멍피자 & 멍김밥</h4>
+                                <p class="text-gray-500 text-sm">쌀가루 도우와 닭가슴살 토핑으로 만든 안심 간식</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-4 bg-orange-50 p-4 rounded-2xl">
+                            <span class="text-2xl">☕</span>
+                            <div>
+                                <h4 class="font-bold text-lg">멍푸치노 (락토프리)</h4>
+                                <p class="text-gray-500 text-sm">소화가 잘 되는 우유 거품과 캐롭 파우더</p>
+                            </div>
+                        </li>
+                  </ul>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <div class="bg-white p-10 rounded-[50px] shadow-xl border-t-8 border-shinyBlue h-full">
+                    <div class="w-20 h-20 bg-blue-100 text-shinyBlue rounded-3xl flex items-center justify-center text-4xl mb-6">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">안심 푸드</h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-8"> 강아지가 한 입 뺏어 먹어도 아무 문제 없도록! <br>
+						모두가 안전하게 즐길 수 있는 축제가 될 수 있도록!</p>
+                    
+<div class="bg-red-50 p-6 rounded-3xl mb-8 border border-red-100">
+          <h4 class="text-red-600 font-bold mb-2"><i class="fas fa-exclamation-triangle"></i> 이 식재료는 절대 넣지 않았어요!</h4>
+                        <p class="text-gray-600">양파, 마늘, 포도, 초콜릿, 아보카도, 인공감미료(자일리톨)</p>
+                    </div>
+
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 bg-blue-50 p-4 rounded-2xl">
+                            <span class="text-2xl">🌭</span>
+                            <div>
+                                <h4 class="font-bold text-lg">닭가슴살 핫도그</h4>
+                                <p class="text-gray-500 text-sm">양파와 마늘 소스 대신 요거트 드레싱 사용</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-4 bg-blue-50 p-4 rounded-2xl">
+                            <span class="text-2xl">🥪</span>
+                            <div>
+                                <h4 class="font-bold text-lg">단호박 에그 샌드위치</h4>
+                                <p class="text-gray-500 text-sm">자연스러운 달콤함과 부드러운 식감</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 bg-white p-8 rounded-[40px] shadow-md text-center">
+            <h3 class="text-2xl font-bold mb-4 text-orange-600">안전한 시식을 위한 캠페인</h3>
+            <p class="text-gray-600 text-lg">
+                모든 음식은 <span class="font-bold text-gray-900">'전용 피크닉 존'</span>에서만 섭취해 주세요.<br>
+                쓰레기는 반드시 분리배출하여 우리 아이들의 발이 다치지 않게 도와주세요!
+            </p>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-10 text-center">
+        <p>© 2026 Ulsan Dog Festival. 함께하DOG록</p>
+    </footer>
+
+</body>
+</html>

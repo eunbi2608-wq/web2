@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함께하DOG록 - 콘테스트</title>
+    <style>
+        /* 눈누 G마켓 산스 웹폰트 정의 (메인 페이지와 완벽 일치) */
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GmarketSansBold';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        :root {
+            --sky-blue: #007BFF; /* 메인 페이지의 shinyBlue(#007BFF)와 색상 통일 */
+            --mustard: #FFDB58;  /* 메인 페이지의 mustard(#FFDB58)와 색상 통일 */
+            --white: #ffffff;
+            --light-bg: #f9f9f9;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'GmarketSansMedium', sans-serif;
+            background-color: var(--light-bg);
+            scroll-behavior: smooth;
+            letter-spacing: -0.01em;
+        }
+
+        /* 폰트 굵기 지정 최적화 */
+        h1, h2, h3, h4, nav, button, a, p, span, label {
+            font-family: 'GmarketSansMedium', sans-serif;
+        }
+        
+        .font-bold, strong, b, .logo, .btn-reserve, .btn-submit, .rank-tag {
+            font-family: 'GmarketSansBold', sans-serif;
+        }
+
+        /* 1. 상단 내비게이션 */
+        .navbar {
+            position: fixed;
+            top: 0; width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-sizing: border-box;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 2px solid var(--mustard); /* 코드 오타 수정: border-b -> border-bottom */
+        }
+
+        /* 로고 링크 스타일 */
+        .logo { 
+            font-size: 24px; 
+            color: var(--sky-blue); 
+            font-weight: bold; 
+            text-decoration: none; /* 밑줄 제거 */
+            display: flex;
+            align-items: center;
+            transition: 0.2s;
+        }
+        .logo:hover { opacity: 0.7; } 
+        .logo span { color: var(--mustard); }
+
+        .btn-reserve { 
+            background: var(--mustard); 
+            padding: 8px 20px; 
+            border-radius: 25px; 
+            text-decoration: none; 
+            color: #111; 
+            font-weight: bold; 
+            transition: 0.3s; 
+        }
+        .btn-reserve:hover { background: #e1b000; }
+
+        /* 2. 메인 히어로 섹션 (이미지 배너) */
+        .hero {
+            margin-top: 75px; 
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        .hero-banner {
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            display: block;
+            border-radius: 0 0 40px 40px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+
+        /* 3. 컨텐츠 영역 */
+        .container { max-width: 1100px; margin: 40px auto 100px; padding: 0 20px; }
+
+        .section-card {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 60px;
+        }
+
+        .section-title { font-size: 32px; text-align: center; margin: 60px 0 30px; color: #333; font-weight: bold;}
+        .section-title span { color: var(--sky-blue); }
+
+        .btn-submit {
+            background: var(--sky-blue);
+            color: white;
+            border: none;
+
+            padding: 15px 60px;
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+            transition: 0.3s;
+        }
+        .btn-submit:hover { background: #0056b3; transform: translateY(-2px); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            position: relative;
+            transition: 0.3s;
+        }
+        .photo-card:hover { transform: translateY(-5px); }
+
+        .photo-card img { width: 100%; height: 280px; object-fit: cover; }
+
+        .empty-card {
+            border: 3px dashed #e0e0e0;
+            background: #fdfdfd;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 25px;
+            color: #ccc;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .empty-card:hover { border-color: var(--sky-blue); color: var(--sky-blue); background: #f0f7ff; }
+
+        .card-footer {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .like-btn {
+            background: #fff0f0;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 15px;
+            color: #ff5e5e;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+        }
+        .like-btn:hover { background: #ffdede; }
+
+        .rank-tag {
+            position: absolute;
+            top: 15px; left: 15px;
+            background: var(--mustard);
+            padding: 5px 15px;
+            border-radius: 12px;
+            font-weight: bold;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            color: #111;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner { border-radius: 0; }
+            .section-title { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">함께하DOG록</a>
+        <div class="menu">
+            <a href="index.html" class="btn-reserve">돌아가기</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <img src="배너.png" alt="축제 배너" class="hero-banner" onclick="document.getElementById('imageInput').click()">
+    </header>
+
+    <main class="container">
+        <section class="section-card">
+            <h2 class="section-title" style="margin: 0 0 30px;">📸 우리 아이 <span>사진 올리기</span></h2>
+            <div style="text-align: center;">
+                <input type="file" id="imageInput" hidden accept="image/*">
+                <label for="imageInput" style="cursor: pointer; display: inline-block; padding: 40px; border: 2px dashed #ddd; border-radius: 20px; margin-bottom: 20px; width: 80%;">
+                    <div style="font-size: 30px;">🐕</div>
+                    <p id="fileName" style="color: #888;">자랑하고 싶은 사진을 선택해 주세요</p>
+                </label><br>
+                <button class="btn-submit" onclick="uploadPhoto()">등록하기</button>
+            </div>
+        </section>
+
+        <h2 class="section-title">🏆 명예의 전당 <span>TOP 3</span></h2>
+        <div id="top-rankers" class="grid" style="margin-bottom: 80px;"></div>
+
+        <h2 class="section-title">🐾 참가 중인 모든 댕댕이</h2>
+        <div id="photo-list" class="grid"></div>
+    </main>
+
+    <script>
+        let db = [
+            { id: 1, src: 'song.jpg', likes: 150 },
+            { id: 2, src: 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=600&auto=format&fit=crop', likes: 120 },
+            { id: 3, src: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=600&auto=format&fit=crop', likes: 95 },
+            { id: 4, src: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=600&auto=format&fit=crop', likes: 45 }
+        ];
+
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            if(this.files[0]) document.getElementById('fileName').innerText = this.files[0].name;
+        });
+
+        function uploadPhoto() {
+            const input = document.getElementById('imageInput');
+            if (!input.files[0]) return alert("사진을 선택해주세요!");
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                db.push({ id: Date.now(), src: e.target.result, likes: 0 });
+                render();
+                input.value = "";
+                document.getElementById('fileName').innerText = "자랑하고 싶은 사진을 선택해 주세요";
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+
+        function addLike(id) {
+            const item = db.find(p => p.id === id);
+            if(item) { item.likes++; render(); }
+        }
+
+        function render() {
+            const allList = document.getElementById('photo-list');
+            const topList = document.getElementById('top-rankers');
+            allList.innerHTML = '';
+            topList.innerHTML = '';
+
+            db.forEach(p => allList.appendChild(createCard(p)));
+
+            for(let i=0; i<2; i++) {
+                const empty = document.createElement('div');
+                empty.className = 'empty-card';
+                empty.innerHTML = `<span style="font-size:40px;">?</span><p>다음 주인공은 누구?</p>`;
+                empty.onclick = () => document.getElementById('imageInput').click();
+                allList.appendChild(empty);
+            }
+
+            const top3 = [...db].sort((a,b) => b.likes - a.likes).slice(0, 3);
+            top3.forEach((p, i) => {
+                const card = createCard(p);
+                const tag = document.createElement('div');
+                tag.className = 'rank-tag';
+                const icons = ['🥇', '🥈', '🥉'];
+                tag.innerText = icons[i] + " " + (i+1) + "등";
+                card.prepend(tag);
+                topList.appendChild(card);
+            });
+        }
+
+        function createCard(p) {
+            const div = document.createElement('div');
+            div.className = 'photo-card';
+            div.innerHTML = `
+                <img src="${p.src}">
+                <div class="card-footer">
+                    <span>❤️ <b>${p.likes}</b></span>
+                    <button class="like-btn" onclick="addLike(${p.id})">좋아요</button>
+                </div>
+            `;
+            return div;
+        }
+
+        render();
+    </script>
+</body>
+</html>
